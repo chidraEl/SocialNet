@@ -1,0 +1,377 @@
+body{
+    overflow-x: hidden;
+    font-family: 'Poppins';
+    font-size: .8rem;
+    color:#555;
+    background:var(--bs-gray-700)
+}
+body.full{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+.center{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.form-control{
+  border-radius: 8px;
+}
+.logo.md{
+  width:64px;
+  height:64px;
+}
+.logo.sm{
+  width:32px;
+  height:32px;
+}
+a{
+    text-decoration: none;
+}
+hr{
+  margin:.7rem 0
+}
+p{
+  margin-bottom: 0;
+}
+.h1, .h2, .h3, .h4, .h5, .h6{
+  margin-bottom: 0;
+}
+.btn{
+  padding:8px 13px !important;
+  font-size: .8rem;
+  border-radius: 40px;
+}
+.btn-sm{
+  padding: 2px 8px !important;
+  font-size: .6rem;
+}
+.btn-lg{
+  padding: 12px 15px !important;
+  font-size: .9rem;
+}
+.w-fix{
+  max-width: 370px;
+}
+.App{
+    padding-top: 50px;
+}
+.navbar-search{
+    position: relative;
+}
+.navbar-search input{
+    padding:5px 8px !important;
+    border-radius: 50px 0 0 50px !important;
+    border:1px solid #bbb;
+    border-right: unset;
+}
+.navbar-search button{
+    padding:5px 12px !important;
+    border-left: unset;
+    border:1px solid #bbb;
+    border-left:unset;
+    border-radius:0  50px  50px 0 !important;
+}
+.alert{
+  border-radius: 50px;
+  padding:12px
+}
+
+.form-signin {
+    max-width: 370px;
+    padding:25px 45px;
+    background:#f5f5f5;
+    border-radius: 12px;
+}
+
+.form-signin .form-floating:focus-within {
+z-index: 2;
+}
+
+.form-signin input{
+  border-left:1px solid #ddd;
+  border-right:1px solid #ddd;
+    border-bottom:1px solid #fafafa;
+    background:#fff
+}
+.form-signin .usrnme {
+    border-top:1px solid #ddd;
+    border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+  .form-signin input[type="password"] {
+/* margin-bottom: 10px; */
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+}
+.form-signin input.pswd {
+margin-bottom: -1px;
+border-bottom:unset;
+    border-radius: 0;
+}
+.form-signin input.pswd2 {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom:1px solid #ddd;
+  }
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, .1);
+  border: solid rgba(0, 0, 0, .15);
+  border-width: 1px 0;
+  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+.b-example-vr {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 100vh;
+}
+
+.bi {
+  vertical-align: -.125em;
+  fill: currentColor;
+}
+
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.profile-bg{
+    background-position: center;
+    background-size: cover;
+    height:220px;
+    object-fit: cover;
+  }
+.profile-avatar{
+    width:100px;
+    height:100px;
+    border-radius: 50%;
+    position: relative;
+    top:-35px;
+    margin-bottom: -100px;
+    border: 5px solid rgba(255,255,255,.7);
+  }
+  .profile-name{
+    font-size: 19px;
+    font-weight: 700;
+    color:#333;
+  }
+  .profile-bar{
+    position: relative;
+    padding:5px 10px;
+    background:rgb(100 100 100)
+  }
+  @media (max-width: 1000px) {
+    .profile-bg {
+      padding-top:30px;
+      height:250px
+    }
+    .profile-avatar {
+      position: relative;
+      top:0;
+      margin-bottom: 0;
+    }
+    .profile-name{
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+.sticky{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100px;
+}
+
+/* Timeline Posts */
+.post-card {
+  border-radius: 6px;
+  border: 1px solid rgb(106, 106, 106);
+  overflow: hidden;
+  border-bottom: 6px solid #333;
+  margin-bottom: 30px;
+}
+.post-card .cover
+{
+  min-height:150px;
+  object-fit: cover;
+  max-height:450px;
+  object-position: center;
+}
+.post-card .card-info
+{
+  padding: 0 12px 12px;
+  z-index: 99;
+}
+.post-card .card-info img.profile-photo-lg
+{
+  border: 4px solid #fff;
+}
+img.profile-photo-lg {
+  height: 62px;
+  width: 62px;
+  border-radius: 50%;
+}
+img.profile-photo-sm {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
+.profile-link {
+  font-weight: 500;
+  font-size: 14px;
+  color:#555;
+}
+.profile-link.bg {
+  background:#777;
+  font-size: 13px;
+  padding:4px 6px;
+  font-weight: 600;
+  color:#fff;
+  border-radius: 4px;
+  margin-top: -2px;
+}
+
+.fw-500{ font-weight: 500;}
+.card-info-header{
+  margin:0 6px;
+  margin-top: -30px;
+}
+.section-header{
+  border-bottom: 4px solid var(--bs-info);
+}
+.navigation_item{
+  padding:8px 15px;
+  color:#ddd;
+  font-size: 11px;
+  margin-right: 2px;
+  background-color: rgba(221, 221, 221,.05);
+}
+.navigation_item:hover,
+.navigation_item:last-child{
+  color:#fff;
+  background-color: rgba(221, 221, 221,.15);
+  border-radius: 5px ; 
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .1);
+}
+
+.form-switch .form-check-input{
+  width: 2.8em;
+  border-radius: 10px;
+}
+.form-check-input{
+  background-color: #eee;
+  height: 1.8em;
+  border: 1px solid rgb(0 0 0 / 10%);
+}
+.dropdown-header .dropdown-menu[data-bs-popper]{
+  left:-100px
+}
+.dropdown-item:focus, .dropdown-item:hover{
+  background-color: #cbcbcb;
+}
+.fullWin-container{
+  display: none;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999;
+  background-color: rgb(52 58 64 / 95%);
+  position: fixed;
+  top:0;
+  left:0
+}
+.upload{
+  width:400px;
+  padding:40px;
+  color:#ddd
+  
+}
+.suggetions .btn{
+  border:2px solid #fff  !important;
+}
+.suggetions .btn:hover{
+  border:2px solid #333  !important;
+}
+
+.followersList, .followingsList{
+  display: none;
+}
+.followContainer{
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .dropdown-header{
+    width:100%
+  }
+  .dropdown-header .dropdown-menu{
+    display: block;
+  }
+  .uploadBtn{
+    position:fixed;
+    bottom:15px;
+    z-index: 999;
+    left: 0;
+    right: 0;    
+  }
+  .uploadBtn button{
+    box-shadow: 0 0 15px rgb(0 0 0 / 50%);
+  }
+  .upload{
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+  }
+} 
+
+
+.popup-sm{
+  width:400px;
+  padding:25px;
+  padding-top:10px
+}
+
+.post-tools{
+  position: absolute;
+  top:5px;
+  right:5px
+}

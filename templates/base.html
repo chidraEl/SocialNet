@@ -1,0 +1,114 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="">
+    <title>{%block title%}{%endblock%} - SocialNet</title>
+    <link rel="canonical" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#eee">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <main>
+        <nav class="navbar navbar-light navbar-expand-md bg-light fs-6 fixed-top py-2">
+            <div class="container-fluid">
+              <a href="/" class="me-4"><img src="{% static 'assets/img/logo.png' %}" class="logo sm"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="d-flex navbar-search" role="search" action="/search/" method="GET">
+                    {% csrf_token %}
+                    <input class="form-control" type="search" name="s" placeholder="Search" aria-label="Search">
+                    <button class="btn " type="submit"><i class='bi-search'></i></button>
+                </form>
+                <div class="center mx-md-auto mx-0 md-my-3 d-none d-md-block">
+                    <button class="btn btn-danger btn-lg d-flex" onclick="showUploadForm('upload')">
+                        <i class="bi-upload mx-2"></i> <span>Upload</span>
+                    </button>                   
+                </div>
+                <div class="d-flex">
+                    <div class=" navbar-nav dropdown dropdown-header">
+                        <a class="nav-link dropdown-toggle d-md-block d-none" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{{profile.avatar.url}}" alt="" width="32" height="32" class="rounded-circle me-2">
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a href="/profile/{{profile.user.username}}" class="dropdown-item">
+                            Profile
+                            </a>
+                        </li>
+                            <li>
+                            <a href="/settings" class="dropdown-item">
+                            Settings
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/logout" class="dropdown-item">
+                                Logout
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </nav>
+
+        <div class="center d-flex d-md-none uploadBtn">
+            <button class="btn btn-danger btn-lg d-flex" onclick="showUploadForm('upload')">
+                <i class="bi-upload mx-2"></i> <span>Upload</span>
+            </button>                   
+        </div>
+
+        <div class="fullWin-container center" name="upload">
+            <div class="center w-100 h-100">
+                <form class="upload center bg-dark rounded shadow-sm" action="/upload/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h5 class="text-light mb-5"><i class="bi-upload fs-3 text-center"></i> Upload new post</h5>
+                    <div>
+                        <div class="mb-3 w-100">
+                            <input type="file" name="media" class="form-control form-control-sm"/>
+                        </div>
+                        <div class="mb-3 w-100">
+                            <textarea name="caption" class="form-control form-control-sm " placeholder="Write Caption here" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <a onclick="showUploadForm('upload')" href="#" class="nav-link center text-light mx-3 fs-6">Cancel</a>
+                        <button role="submit" class="btn btn-info">Upload Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class='App container-fluid'>
+            <div class='p-3 pt-5'>
+                {% block body%}{% endblock%}
+            </div>
+            <footer class="text-light py-2">
+                <div class="container">
+                <p class="float-end">
+                    <a href="#" class="rounded-circle text-white fs-4"><i class="bi-arrow-up-circle"></i></a>
+                </p>
+                <p class="">Copyright 2022</p>
+                </div>
+            </footer>
+        </div>
+
+    </main>
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="{% static 'js/script.js'%}"></script>
+</body>
+</html>

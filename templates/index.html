@@ -1,0 +1,73 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %}Home{%endblock%}
+{% block body %}
+  <section class=''>
+    {% for msg in messages %}
+      <div class="alert alert-success mx-auto">{{msg}}</div>
+    {% endfor %}
+    <div class='row py-5 justify-content-center'>
+      <div class="col-xl-6 col-lg-6 col-md-7 col-12 ">
+        {% if not posts %}
+          <div class="alert alert-dark">No posts uploaded yet!</div>
+        {% endif %}
+        
+        {% for post in posts %}
+          <div class="post-card card shadow-sm">
+            {% if post.extension == "photo"  %}
+              <img src="{{ post.image.url }}" alt="profile-cover" class="img-responsive cover">
+            {%else%}
+              <video src="{{ post.image.url }}" controls alt="user" class=""></video>
+            {%endif%}
+            <div class="card-info">
+              <div class="card-info-header d-flex">
+                <img src="{{post.profile.avatar.url}}" alt="user" class="profile-photo-lg ">
+                <div class="d-flex justify-content-end flex-column w-100 ">
+                  <div class="d-flex justify-content-between w-100 mb-2">
+                    <a href="/like?p={{post.id}}" class="profile-link fs-6"><span><i class="bi-heart-fill text-danger"></i>
+                    {% if post.likes == 0%}
+                      No likes
+                    {% elif post.likes == 1 %}
+                      Liked by {{post.likes}} person
+                      {% else %}
+                      Liked by {{post.likes}} people
+                    {% endif %}
+                    </span></a>
+                    <span class="fs-6 center">{{ post.time_ago }}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="friend-info mt-2 fw-500">
+                  <p><a href="/profile/{{ post.user }}" class="profile-link bg">{{ post.user}}</a> {{post.caption}}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        
+      </div>
+
+      <div class="col-xl-3 col-lg-4 col-md-5 col-12 ">
+        <div class="sticky list-group list-group-dark shadow-sm rounded overflow-hidden">
+          <p class="h6 bg-light section-header p-3">Suggested for you</p>
+          {% for user in users %}
+            
+          <div class="list-group-item list-group-item-action d-flex justify-content-between suggetions" aria-current="true">
+            <div class="d-flex">
+              <img class="profile-photo-sm" src="{{user.avatar.url}}"/>
+              <div class="h-100 d-flex justify-content-center flex-column px-1 fs-6">
+                <a href="/profile/{{user.user.username}}" class="px-1 fw-bold">{{user.user.username}}</a>
+                <p class="px-1">20k followers</p>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center flex-column">
+              <a href="/follow?p={{user.user.username}}" class="btn btn-sm ">Follow</a>
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

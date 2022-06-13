@@ -1,0 +1,33 @@
+{% extends 'base_visitor.html'%}
+{% load static%}
+{% block title %}Login{% endblock%}
+{% block body %}
+<div class="container">
+    <div class="text-center">
+        <img src="{% static 'assets/img/logo.png' %}" class="logo md mb-4">
+    </div>
+    {% for msg in messages %}
+      <div class="w-fix alert alert-danger mx-auto">{{msg}}</div>
+    {% endfor %}
+    <div class="form-signin w-100 m-auto shadow-sm">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h1 class="h3 mb-3 fw-bold text-center">Sign in</h1>
+            <div class="form-floating">
+                <input type="text" name="username" class="form-control usrnme" id="usernameInput" placeholder="Your username">
+                <label for="usernameInput">Username</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" name="password" class="form-control pswd2" id="PasswordInput" placeholder="Password">
+                <label for="PasswordInput">Password</label>
+            </div>
+            <div class="input-group my-3">
+                <input class="form-check-input me-2" type="checkbox" id="termsCheckbox"/>
+                <label class="fs-6" for="termsCheckbox">Remember me</label>
+              </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            <a href="/signup" class="nav-link text-center text-info"><small>No account! Create one for free!</small></a>
+        </form>
+    </div>
+</div>
+{% endblock %}

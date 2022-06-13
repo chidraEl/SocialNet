@@ -1,0 +1,125 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %}Settings{% endblock %}
+{% block body %}
+  <div class="container">
+        <div class="d-flex my-3 navigation">
+            <a href='/' class="navigation_item active">Home</a>
+            <a href='/profile/{{user.username}}' class="navigation_item">{{user.username}}</a>
+            <a href='/settings' class="navigation_item">Settings</a>
+        </div>
+        <hr>
+        {% for msg in messages %}
+            <div class="alert alert-success mx-auto">{{msg}}</div>
+        {% endfor %}
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row py-4">
+                <div class="col-md-3 col-12" id="General"><p class="fw-bold fs-5 mb-2 text-light">General Settings</p></div>
+                <div class="col-md-9 col-12 mb-3">
+                    <div class="bg-light rounded shadow-sm p-3 text-dark">
+                        <div class="row">
+                            <div class="col-md-6 col-12 mb-3 form-floating">
+                                <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name" value="{{user.first_name}}">
+                                <label for="fname">First Name</label>
+                            </div>
+                            <div class="col-md-6 col-12 mb-3 form-floating">
+                                <input type="text" class="form-control" name="lname" id="lname" aria-describedby="lname" placeholder="Last Name" value="{{user.last_name}}">
+                                <label for="lname" class="form-label">Last Name</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email address" value="{{user.email}}">
+                            <label for="exampleInputEmail1">Email address</label>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <textarea class="form-control" id="bio" name="bio" placeholder="About me" style="height:100px">{{profile.bio}}</textarea>
+                            <label for="bio">About me</label>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input type="text" name="location" class="form-control" id="location" placeholder="location" value="{{profile.location}}">
+                            <label for="location">Location</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-12 mb-3 form-floating">
+                                <input type="text" name="workingat" class="form-control" id="workingat" placeholder="Working at" value="{{profile.workingat}}">
+                                <label for="workingat">Working at</label>
+                            </div>
+                            <div class="col-md-6 col-12 mb-3 form-floating">
+                                <select name="relationship" class="form-select" id="relationship" placeholder="relationship">
+                                    <option value=""></option>
+                                    <option value="single" {% if profile.relationship == "single" %}selected{%endif%}>Single</option>
+                                    <option value="married" {% if profile.relationship == "married" %}selected{%endif%}>Married</option>
+                                    <option value="openrelationship" {% if profile.relationship == "openrelationship" %}selected{%endif%}>Open-relationship</option>
+                                    <option value="divorced" {% if profile.relationship == "divorced" %}selected{%endif%}>Divorced</option>
+                                    <option value="complicated" {% if profile.relationship == "complicated" %}selected{%endif%}>Complicated</option>
+                                    <option value="secret" {% if profile.relationship == "secret" %}selected{%endif%}>Secret</option>
+                                </select>
+                                <label for="workingat">Relationship</label>
+                            </div>
+                        </div>                        
+                        <label for="avatar" class="mb-2">Profile Image</label>
+                        <div class="row mb-2">
+                            <div class="col-md-4 col-12 mb-3 ">
+                                <img src="{{profile.avatar.url}}" alt="Profile Image" class="img-fluid rounded shadow-sm profile-photo-lg"  width="64" height="64">
+                            </div>
+                            <div class="col-md-8 col-12 mb-3 ">
+                                <input type="file" class="form-control form-control-sm" id="avatar" name="avatar" placeholder="Profile Image"/>
+                            </div>
+                        </div>
+                        <label for="cover" class="mb-2">Profile Cover</label>
+                        <div class="row">
+                            <div class="col-md-4 col-12 mb-3 ">
+                                <img src="{{profile.cover.url}}" alt="Profile cover" class="img-fluid rounded shadow-sm" width="150" height="64">
+                            </div>
+                            <div class="col-md-8 col-12 mb-3 ">
+                                <input type="file" class="form-control form-control-sm" id="cover" name="cover" placeholder="Profile Cover"/>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-12" id="Privacy"><p class="fw-bold fs-5 mb-2 text-light">Privacy Settings</p></div>
+                <div class="col-md-9 col-12 mb-3">
+                    <div class="bg-light rounded shadow-sm p-3 text-dark">
+                        <div class="d-flex justify-content-between">
+                            <label class="center" for="follow_me">Everyone can follow me?</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="follow_me" name="follow_me" {% if profile.follow_me%}checked{%endif%}>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <label class="center" for="private_profile">Make my profile private?</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="private_profile" name="private_profile" {% if profile.private_profile%}checked{%endif%}>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <label class="center" for="show_online">Show that I'm online?</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="show_online" name="show_online" {% if profile.show_online%}checked{%endif%}>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <label class="center" for="allow_comments">Allow comments on my posts?</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="allow_comments" name="allow_comments" {% if profile.allow_comments%}checked{%endif%}>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-12"><p class="fw-bold fs-4"></p></div>
+                <div class="col-md-9 col-12 mb-3">
+                    <div class="p-3 text-dark text-center">
+                        <a href="/" class="text-light fw-bold me-3">Cancel</a>
+                        <button type="submit" class="btn btn-lg btn-success">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+  </div>
+
+{% endblock %}

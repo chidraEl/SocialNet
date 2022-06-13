@@ -1,0 +1,42 @@
+{% extends 'base_visitor.html'%}
+{% load static%}
+{% block title %}Create free account{% endblock%}
+{% block body %}
+<div class="container">
+    <div class="text-center">
+      <img src="{% static 'assets/img/logo.png' %}" class="logo md mb-4">
+    </div>
+    {% for msg in messages %}
+      <div class="w-fix alert alert-danger mx-auto">{{msg.type }}{{msg}}</div>
+    {% endfor %}
+    <div class="form-signin w-100 m-auto shadow-sm">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <h1 class="h4 mb-3 fw-bold text-center">Join For free</h1>
+          <hr>
+          <div class="form-floating">
+            <input type="text" name="username" class="form-control usrnme" id="usernameInput" placeholder="Your username">
+            <label for="usernameInput">Username</label>
+          </div>
+          <div class="form-floating">
+              <input type="email" name="email" class="form-control" id="emailInput" placeholder="name@example.com">
+              <label for="emailInput">Email address</label>
+          </div>
+          <div class="form-floating">
+              <input type="password" name="password" class="form-control" id="PasswordInput" placeholder="Password">
+              <label for="PasswordInput">Password</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" name="password2" class="form-control pswd2" id="PasswordInput2" placeholder="Password">
+            <label for="PasswordInput2">Re-type Password</label>
+          </div>
+          <div class="input-group my-3">
+            <input class="form-check-input me-2" type="checkbox" id="termsCheckbox"/>
+            <label class="fs-6" for="termsCheckbox">I agree with the terms and conditions</label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Create free account</button>
+          <a href="/login" class="nav-link text-center text-info"><small>Do you have an account? Login then!</small></a>
+      </form>
+    </div>
+</div>
+{% endblock %}
